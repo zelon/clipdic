@@ -18,9 +18,14 @@ namespace ClipDic
         private string m_strLastClipboard = "";
         private void OnTick(object sender, EventArgs e)
         {
-            if (Clipboard.ContainsText())
+			/// 클립보드에 텍스트가 들어있고, 현재창이 최소화된 상태가 아니면 동작한다.
+            if (Clipboard.ContainsText() && this.WindowState != FormWindowState.Minimized)
             {
-                string strCurrentText = Clipboard.GetText();
+                string strCurrentText = Clipboard.GetText().Trim();
+
+				/// url 은 검색하지 않는다.
+				if (strCurrentText.StartsWith("http://")) return;
+
                 if (m_strLastClipboard != strCurrentText)
                 {
                     m_strLastClipboard = strCurrentText;
