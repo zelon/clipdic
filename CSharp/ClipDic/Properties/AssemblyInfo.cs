@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // 어셈블리와 관련된 정보를 수정하려면
 // 이 특성 값을 변경하십시오.
 [assembly: AssemblyTitle("ClipDic")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Programming by zelon, Icons by Axialis Team")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("SEC")]
+[assembly: AssemblyCompany("Rh lab.")]
 [assembly: AssemblyProduct("ClipDic")]
-[assembly: AssemblyCopyright("Copyright (C) SEC 2008")]
+[assembly: AssemblyCopyright("Copyright (C) zelon 2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

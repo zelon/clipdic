@@ -73,7 +73,8 @@ namespace ClipDic
 
         private string makeUrl(string strText)
         {
-            return "http://endic.naver.com/small_search.nhn?query=" + strText + "&x=0&y=0";
+            return "http://www.google.co.kr/dictionary?langpair=en|ko&q=" + strText + "&hl=ko&aq=f";
+            //return "http://endic.naver.com/small_search.nhn?query=" + strText + "&x=0&y=0";
         }
 
         private void OnCheckedChangded(object sender, EventArgs e)
@@ -89,6 +90,14 @@ namespace ClipDic
         private void OnSelectionChangeCommitted(object sender, EventArgs e)
         {
             Navigate((string)comboBox1.SelectedItem);
+        }
+
+        private void buttonHelp_Click(object sender, EventArgs e)
+        {
+            AboutDialog s = new AboutDialog();
+
+            s.TopMost = this.TopMost;
+            s.ShowDialog(this.Owner);
         }
     }
 }
