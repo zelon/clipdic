@@ -12,10 +12,18 @@ public class ClipDicMain
 {
 	private Browser m_browser = null;
 	private final int timerInterval = 500; ///< 500 ms
+	
+	public static void main(String[] args)
+	{
+		ClipDicMain main = new ClipDicMain();
+		main.ShowBrowser();
+	}
     public void ShowBrowser()
     {
         final Display display = new Display();
-        final Shell shell = new Shell(display);
+        
+        final Shell shell = new Shell(display);//, SWT.ON_TOP | SWT.MAX | SWT.MIN | SWT.CLOSE);
+        shell.setSize(544, 474);
         shell.setLayout(new FillLayout());
 
         m_browser = new Browser(shell, SWT.NONE);
