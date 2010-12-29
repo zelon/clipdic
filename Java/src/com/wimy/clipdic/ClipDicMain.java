@@ -1,4 +1,4 @@
-package clipdic.wimy.com;
+package com.wimy.clipdic;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
