@@ -23,6 +23,7 @@ public class ClipDicMain
         final Display display = new Display();
         
         final Shell shell = new Shell(display);//, SWT.ON_TOP | SWT.MAX | SWT.MIN | SWT.CLOSE);
+        shell.setText("ClipDic");
         shell.setSize(544, 474);
         shell.setLayout(new FillLayout());
 
