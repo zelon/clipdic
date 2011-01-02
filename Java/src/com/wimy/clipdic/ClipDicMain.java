@@ -1,9 +1,15 @@
 package com.wimy.clipdic;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.dnd.Clipboard;
 import org.eclipse.swt.dnd.TextTransfer;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -26,6 +32,27 @@ public class ClipDicMain
         shell.setText("ClipDic");
         shell.setSize(544, 474);
         shell.setLayout(new FillLayout());
+        
+        URL fileStream = getClass().getClassLoader().getResource("com/wimy/clipdic/clipdic.png");
+        
+        if ( fileStream != null )
+        {
+            ImageData imageData;
+			try
+			{
+				imageData = new ImageData(fileStream.openStream());
+	            Image image = new Image(display, imageData);
+	            shell.setImage(image);
+			}
+			catch (IOException e)
+			{
+	        	System.err.println("Cannot get clipdic.png");
+			}
+        }
+        else
+        {
+        	System.err.println("Cannot get clipdic.png");
+        }
 
         m_browser = new Browser(shell, SWT.NONE);
         m_browser.setUrl("http://www.google.com/");
@@ -38,7 +65,14 @@ public class ClipDicMain
 				public void run()
 				{
 					//System.out.println("timer run");
-					ExecuteFromClipboard();
+					try
+					{
+						ExecuteFromClipboard();
+					}
+					catch ( NullPointerException e)
+					{
+						
+					}
 					
 					display.timerExec(timerInterval, this);
 				}
