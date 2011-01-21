@@ -54,7 +54,7 @@ public class ClipDicMain
         }
 
         m_browser = new Browser(shell, SWT.NONE);
-        m_browser.setUrl("http://www.google.com/");
+        searchWord("");
 
         shell.open();
 		m_clipboard = new Clipboard(display);
@@ -114,7 +114,7 @@ public class ClipDicMain
 
 	private void searchWord(String strResult)
 	{
-		String url = "http://www.google.co.kr/dictionary?langpair=en|ko&q=" + strResult + "&hl=ko&aq=f";
+		String url = "http://r.wimy.com/dic?q=" + strResult;
 
 		//System.out.println("new url : " + url);
 
