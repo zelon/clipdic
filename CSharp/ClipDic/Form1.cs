@@ -73,8 +73,7 @@ namespace ClipDic
 
         private string makeUrl(string strText)
         {
-            return "http://www.google.co.kr/dictionary?langpair=en|ko&q=" + strText + "&hl=ko&aq=f";
-            //return "http://endic.naver.com/small_search.nhn?query=" + strText + "&x=0&y=0";
+            return "http://r.wimy.com/dic?q=" + strText;
         }
 
         private void OnCheckedChangded(object sender, EventArgs e)
