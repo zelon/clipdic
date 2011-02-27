@@ -17,13 +17,16 @@ public class ClipDicMain
 {
 	private Browser m_browser = null;
 	private final int timerInterval = 500; ///< 500 ms
+	private Clipboard m_clipboard = null;
+	private String m_strLastClipboard = "";
 	
 	public static void main(String[] args)
 	{
 		ClipDicMain main = new ClipDicMain();
 		main.ShowBrowser();
 	}
-    public void ShowBrowser()
+
+	public void ShowBrowser()
     {
         final Display display = new Display();
         
@@ -88,19 +91,15 @@ public class ClipDicMain
         display.dispose();
     }
 
-	private Clipboard m_clipboard = null;
-	private String m_strLastClipboard = "";
-	
 	private void ExecuteFromClipboard()
 	{
 		String strResult = (String)m_clipboard.getContents(TextTransfer.getInstance());
 
-		strResult = strResult.trim();
-		strResult = strResult.toLowerCase();
+		strResult = strResult.trim().toLowerCase();
 
-		if ( strResult.length() <= 0 ) return;
+		if ( false == IsWordForDictionary(strResult) ) return;
 		
-		if ( strResult.equals(m_strLastClipboard) )	///< if same clipboard contents, skip
+		if ( strResult.equals(m_strLastClipboard) )	///< if same clipboard contents is not changed, skip
 		{
 			//System.out.println("same clipboard");
 			return;
@@ -112,9 +111,18 @@ public class ClipDicMain
 		searchWord(strResult);
 	}
 
+	boolean IsWordForDictionary(String word)
+	{
+		if ( word.startsWith("http://") ) return false;
+		if ( word.length() <= 0 ) return false;
+		
+		return true;
+	}
+	
 	private void searchWord(String strResult)
 	{
 		String url = "http://r.wimy.com/dic?q=" + strResult;
+		//String url = "http://www.google.co.kr/dictionary?langpair=en|ko&hl=ko&aq=f&q=" + strResult;
 
 		//System.out.println("new url : " + url);
 
