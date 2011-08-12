@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.Shell;
 
 public class ClipDicMain
 {
+	private String m_version = "1.1";
 	private Browser m_browser = null;
 	private final int timerInterval = 500; ///< 500 ms
 	private Clipboard m_clipboard = null;
@@ -31,7 +32,7 @@ public class ClipDicMain
         final Display display = new Display();
         
         final Shell shell = new Shell(display);//, SWT.ON_TOP | SWT.MAX | SWT.MIN | SWT.CLOSE);
-        shell.setText("ClipDic");
+        shell.setText("ClipDic " + m_version);
         shell.setSize(544, 474);
         shell.setLayout(new FillLayout());
         
@@ -124,7 +125,7 @@ public class ClipDicMain
 		String url = "http://r.wimy.com/dic?q=" + strResult;
 		//String url = "http://www.google.co.kr/dictionary?langpair=en|ko&hl=ko&aq=f&q=" + strResult;
 
-		//System.out.println("new url : " + url);
+		System.out.println("Request url : " + url);
 
 		m_browser.setUrl(url);
 	}
