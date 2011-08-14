@@ -106,7 +106,7 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(544, 474);
             this.webBrowser1.TabIndex = 1;
-            this.webBrowser1.Url = new System.Uri("http://www.google.co.kr/dictionary", System.UriKind.Absolute);
+            this.webBrowser1.Url = new System.Uri("about:blank", System.UriKind.Absolute);
             // 
             // timer1
             // 
@@ -132,7 +132,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "ClipDic by zelon";
+            this.Text = "ClipDic";
             this.TopMost = true;
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

@@ -13,8 +13,12 @@ namespace ClipDic
         public Form1()
         {
             InitializeComponent();
+
+            this.webBrowser1.Url = new System.Uri(m_dictionatyURL, System.UriKind.Absolute);
+            this.Text = "ClipDic " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
+        private string m_dictionatyURL = "http://r.wimy.com/dic?q=";
         private string m_strLastClipboard = "";
         private void OnTick(object sender, EventArgs e)
         {
@@ -73,7 +77,7 @@ namespace ClipDic
 
         private string makeUrl(string strText)
         {
-            return "http://r.wimy.com/dic?q=" + strText;
+            return m_dictionatyURL + strText;
         }
 
         private void OnCheckedChangded(object sender, EventArgs e)
