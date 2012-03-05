@@ -36,17 +36,28 @@ function openNewPage(word)
 	}
 }
 
+function isValidWord(word)
+{
+	if ( word.startsWith("http://") ) return false;
+	if ( word.startsWith("//") ) return false;
+	
+	return true;
+}
+
 var lastValue = "";
 function onTimer()
 {
-	var thisValue = getClipboard();
+	var thisValue = getClipboard().trim();
 
 	// if clipboard value is changed,
 	if ( lastValue != thisValue )
 	{
 		lastValue = thisValue;
 
-		openNewPage(thisValue);
+		if ( isValidWord(thisValue) )
+		{
+			openNewPage(thisValue);
+		}
 	}
 }
 

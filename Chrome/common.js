@@ -1,6 +1,14 @@
 
 var baseUrlName = "baseurl";
 
+String.prototype.startsWith = function (str) {
+        return !this.indexOf(str);
+	};
+
+String.prototype.trim = function() {
+	return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+	};
+	
 function $(id)
 {
 	return document.getElementById(id);
