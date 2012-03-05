@@ -1,0 +1,80 @@
+<html>
+<head>
+<script>
+
+function getClipboard()
+{
+	var t = document.getElementById("inputbox");
+	
+	t.value = "";
+	
+	t.focus();
+	document.execCommand('Paste');
+	
+	return t.value;
+}
+
+var lastTab = null;
+function onTabOpened(newTab)
+{
+	// To prevent many tabs opened, Remember ths last tab
+	lastTab = newTab;
+}
+
+function openNewPage(word)
+{
+	var newUrl = "http://r.wimy.com/dic?q=" + word;
+	
+	if ( lastTab != null )
+	{
+		chrome.tabs.update(lastTab.id, { "url" : newUrl }, onTabOpened);
+	}
+	else
+	{
+		chrome.tabs.create({ "url" : newUrl }, onTabOpened);
+	}
+}
+
+var lastValue = "";
+function onTimer()
+{
+	var thisValue = getClipboard();
+
+	// if clipboard value is changed,
+	if ( lastValue != thisValue )
+	{
+		lastValue = thisValue;
+
+		openNewPage(thisValue);
+	}
+}
+
+var timerID = 0;
+function onClickedExtensionIcon()
+{
+	lastTab = null;
+	timerID = window.setInterval(onTimer, 1000);
+}
+
+function onRemovedTab(tabId, removeInfo)
+{
+	if ( lastTab != null )
+	{
+		if ( lastTab.id == tabId )
+		{
+			lastTab = null;
+			window.clearInterval(timerID);
+		}
+	}
+}
+
+
+chrome.tabs.onRemoved.addListener(onRemovedTab);
+chrome.browserAction.onClicked.addListener(onClickedExtensionIcon);
+
+</script>
+</head>
+<body>
+<input type="text" id="inputbox" />
+</body>
+</html>

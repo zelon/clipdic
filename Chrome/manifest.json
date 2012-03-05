@@ -1,0 +1,13 @@
+{
+  "name": "ClipDic",
+  "version": "0.3",
+  "description": "Ctrl+C, you get the meaning.",
+  "background_page": "background.html",
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+  "permissions": [
+    "clipboardRead",
+    "tabs"
+  ]
+}
