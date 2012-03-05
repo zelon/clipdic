@@ -1,5 +1,6 @@
 <html>
 <head>
+<script src="common.js"></script>
 <script>
 
 function getClipboard()
@@ -23,7 +24,7 @@ function onTabOpened(newTab)
 
 function openNewPage(word)
 {
-	var newUrl = "http://r.wimy.com/dic?q=" + word;
+	var newUrl = getBaseUrl() + word;
 	
 	if ( lastTab != null )
 	{
@@ -53,7 +54,9 @@ var timerID = 0;
 function onClickedExtensionIcon()
 {
 	lastTab = null;
-	timerID = window.setInterval(onTimer, 1000);
+	timerID = window.setInterval(onTimer, 100);
+	
+	openNewPage("dictionary");
 }
 
 function onRemovedTab(tabId, removeInfo)
@@ -75,6 +78,7 @@ chrome.browserAction.onClicked.addListener(onClickedExtensionIcon);
 </script>
 </head>
 <body>
+<!-- below input box is for pasting current clipboard content -->
 <input type="text" id="inputbox" />
 </body>
 </html>

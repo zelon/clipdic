@@ -1,8 +1,9 @@
 {
   "name": "ClipDic",
-  "version": "0.3",
+  "version": "0.4",
   "description": "Ctrl+C, you get the meaning.",
   "background_page": "background.html",
+  "options_page" : "options.html",
   "browser_action": {
     "default_icon": "icon.png"
   },

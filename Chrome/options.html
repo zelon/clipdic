@@ -1,0 +1,49 @@
+<html>
+<head>
+	<script src="common.js"></script>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+<script>
+</script>
+</head>
+<body>
+	<div id="all">
+		<img src="icon.png" id="logo" width="48px" /> <span id="options_title">Clipdic Option page</span>
+		<br />
+		<div id="options">
+			<p>
+			Query Base URL : <input type="text" id="baseurl" size="40" /><br />
+			</p>
+			<div id="saveButtonOutter">
+				<button id="resetButton" onclick="onReset();">Set default</button>
+				<button id="saveButton" onclick="onSave();">Save</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+	
+	function onReset()
+	{
+		resetDefaultValues();
+		initValue();
+	}
+	
+	function onSave()
+	{
+		var newBaseUrl = $("baseurl").value;
+		
+		localStorage["baseurl"] = newBaseUrl;
+		
+		alert("Saved");
+	}
+	
+	function initValue()
+	{
+		$("baseurl").value = getBaseUrl();
+	}
+	
+	initValue();
+	
+	</script>
+</body>
+</html>
