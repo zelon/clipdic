@@ -39,6 +39,7 @@ function openNewPage(word)
 function isValidWord(word)
 {
 	if ( word.startsWith("http://") ) return false;
+	if ( word.startsWith("https://") ) return false;
 	if ( word.startsWith("//") ) return false;
 	if ( word == "" ) return false;
 	
