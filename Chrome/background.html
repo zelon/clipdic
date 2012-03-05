@@ -61,13 +61,34 @@ function onTimer()
 	}
 }
 
-var timerID = 0;
 function onClickedExtensionIcon()
+{
+	if ( lastTab == null )
+	{
+		appOn();
+	}
+	else
+	{
+		appOff();
+	}
+}
+
+var timerID = 0;
+function appOn()
 {
 	lastTab = null;
 	timerID = window.setInterval(onTimer, 100);
 	
 	openNewPage("dictionary");
+	chrome.browserAction.setIcon({path: 'icon16.png'});
+}
+
+function appOff()
+{
+	lastTab = null;
+	window.clearInterval(timerID);
+	
+	chrome.browserAction.setIcon({path: 'icon16_bw.png'});
 }
 
 function onRemovedTab(tabId, removeInfo)
@@ -76,8 +97,7 @@ function onRemovedTab(tabId, removeInfo)
 	{
 		if ( lastTab.id == tabId )
 		{
-			lastTab = null;
-			window.clearInterval(timerID);
+			appOff();
 		}
 	}
 }
