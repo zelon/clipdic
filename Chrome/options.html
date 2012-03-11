@@ -13,6 +13,10 @@
 			<p>
 			Query Base URL : <input type="text" id="baseurl" size="40" /><br />
 			</p>
+			<p>
+			Show mode : <input type="radio" name="showmode" id="popup" />Popup 
+					<input type="radio" name="showmode" id="tab" />Tab
+			</p>
 			<div id="saveButtonOutter">
 				<button id="resetButton" onclick="onReset();">Set default</button>
 				<button id="saveButton" onclick="onSave();">Save</button>
@@ -30,9 +34,8 @@
 	
 	function onSave()
 	{
-		var newBaseUrl = $("baseurl").value;
-		
-		localStorage["baseurl"] = newBaseUrl;
+		setBaseUrl($("baseurl").value);
+		setPopupMode($("popup").checked);
 		
 		alert("Saved");
 	}
@@ -40,6 +43,15 @@
 	function initValue()
 	{
 		$("baseurl").value = getBaseUrl();
+		
+		if ( isPopupMode() )
+		{
+			$("popup").checked = true;
+		}
+		else
+		{
+			$("tab").checked = true;
+		}
 	}
 	
 	initValue();

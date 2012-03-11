@@ -22,18 +22,35 @@ function onTabOpened(newTab)
 	lastTab = newTab;
 }
 
-function openNewPage(word)
+function onNewWindowOpened(newWindow)
 {
-	var newUrl = getBaseUrl() + word;
-	
+	onTabOpened(newWindow.tabs[0]);
+}
+
+function openUrl(newUrl)
+{
 	if ( lastTab != null )
 	{
 		chrome.tabs.update(lastTab.id, { "url" : newUrl }, onTabOpened);
 	}
 	else
 	{
-		chrome.tabs.create({ "url" : newUrl }, onTabOpened);
+		if ( isPopupMode() )
+		{
+			chrome.windows.create({"url" : newUrl, "type" : "popup", "width" : 500, "height" : 600 }, onNewWindowOpened);
+		}
+		else
+		{
+			chrome.tabs.create({ "url" : newUrl }, onTabOpened);
+		}
 	}
+}
+
+function openNewPage(word)
+{
+	var newUrl = getBaseUrl() + word;
+	
+	openUrl(newUrl);
 }
 
 function isValidWord(word)
@@ -81,7 +98,7 @@ function appOn()
 	lastTab = null;
 	timerID = window.setInterval(onTimer, 100);
 	
-	openNewPage("dictionary");
+	openUrl("default.html");
 	chrome.browserAction.setIcon({path: 'icon16.png'});
 }
 
