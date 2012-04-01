@@ -16,6 +16,7 @@ function getClipboard()
 }
 
 var lastTab = null;
+var lastWindowId = null;
 function onTabOpened(newTab)
 {
 	// To prevent many tabs opened, Remember ths last tab
@@ -24,6 +25,7 @@ function onTabOpened(newTab)
 
 function onNewWindowOpened(newWindow)
 {
+	lastWindowId = newWindow.id;
 	onTabOpened(newWindow.tabs[0]);
 }
 
@@ -88,7 +90,14 @@ function onClickedExtensionIcon()
 	}
 	else
 	{
-		appOff();
+		if ( isPopupMode() == false )
+		{
+			chrome.tabs.update(lastTab.id, { "selected" : true });
+		}
+		else
+		{
+			chrome.windows.update(lastWindowId, { "focused" : true, "state" : "normal"});
+		}
 	}
 }
 
@@ -105,6 +114,8 @@ function appOn()
 function appOff()
 {
 	lastTab = null;
+	lastWindowId = null;
+	
 	window.clearInterval(timerID);
 	
 	chrome.browserAction.setIcon({path: 'icon16_bw.png'});
