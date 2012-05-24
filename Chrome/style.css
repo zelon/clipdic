@@ -16,7 +16,6 @@ body
 	margin-top: 10px;
 	margin-left:auto;
 	margin-right: auto;
-
 }
 
 #options_title
@@ -34,7 +33,22 @@ body
 	padding: 15px;
 	
 	margin-top: 10px;
+}
+
+#donate
+{
+	width:300px;
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
 	
+	text-align: center;
+}
+
+.donateLink
+{
+	text-decoration: none;
+	color: black;
 }
 
 #baseurl
