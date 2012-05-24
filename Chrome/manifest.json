@@ -1,6 +1,6 @@
 {
   "name": "ClipDic",
-  "version": "1.4",
+  "version": "1.5",
   "description": "Drag and Ctrl+C, to get the meaning",
   
   "icons" : {
@@ -17,6 +17,7 @@
   },
   "permissions": [
     "clipboardRead",
-    "tabs"
+    "tabs",
+    "contextMenus"
   ]
 }

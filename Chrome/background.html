@@ -15,6 +15,17 @@ function getClipboard()
 	return t.value;
 }
 
+function copyToClipboard(aText)
+{
+	var t = document.getElementById("inputbox");
+	
+	t.value = aText;
+	
+	t.focus();
+	document.execCommand('SelectAll');
+	document.execCommand('Copy');
+}
+
 var lastTab = null;
 var lastWindowId = null;
 function onTabOpened(newTab)
@@ -135,6 +146,21 @@ function onRemovedTab(tabId, removeInfo)
 
 chrome.tabs.onRemoved.addListener(onRemovedTab);
 chrome.browserAction.onClicked.addListener(onClickedExtensionIcon);
+
+function onSelection(info, tab)
+{
+	if ( info )
+	{
+		if ( info.selectionText )
+		{
+			copyToClipboard(info.selectionText);
+			
+			onClickedExtensionIcon();
+		}
+	}
+}
+
+chrome.contextMenus.create({ "title" : "Copy and search with ClipDic" , "contexts" : ["selection", "link"], "onclick" : onSelection }, null)
 
 </script>
 </head>
