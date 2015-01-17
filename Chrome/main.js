@@ -68,6 +68,7 @@ function isValidWord(word)
 	if ( word.startsWith("https://") ) return false;
 	if ( word.startsWith("//") ) return false;
 	if ( word == "" ) return false;
+  if ( word.length > 31 ) return false;
 	
 	return true;
 }
