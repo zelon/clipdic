@@ -22,7 +22,7 @@ function getBaseUrl()
 	
 	if ( baseUrl == null )
 	{
-		baseUrl = "http://dic.daum.net/search.do?q=";
+		baseUrl = "http://small.dic.daum.net/search.do?q=";
 	}
 	
 	return baseUrl;

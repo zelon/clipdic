@@ -1,0 +1,39 @@
+<html>
+<head>
+	<script src="common.js"></script>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+	<div id="option" class="card">
+		<img src="icon.png" id="logo" width="48px" /> <span id="option_title">Clipdic Option</span>
+		<br />
+		<div class="card">
+			<table id="option_table">
+				<tr>
+					<td>Base URL:</td>
+					<td><input type="text" id="baseurl" size="40" /></td>
+				</tr>
+				<tr>
+					<td>Show mode:</td>
+					<td>
+						<input type="radio" name="showmode" id="popup" />Popup 
+						<input type="radio" name="showmode" id="tab" />Tab
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div id="option_button_outter">
+							<button id="reset_button">Reset</button>
+							<button id="save_button">Save</button>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="donate">
+			<a href="http://donate.wimy.com/" class="donateLink" target="_blank">[ Donate ClipDic - 후원하기 ]</a>
+		</div>
+	</div>
+	<script src="option.js"></script>
+</body>
+</html>
